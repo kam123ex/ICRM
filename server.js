@@ -110,3 +110,17 @@ app.listen(port, (err) => {
 
 // dialogflow messenger bot
 // EAACh7rTzZBPQBAIgx0yn6LcegKnho3CkNe9CflLCzQb4d75mIQwPdd0eJgGFpIUZBDG544NpxaYZAcjgx0AF5aKyWIeZAZCKZCcxr3k557hdCL11xN8RyPLZAnk0o5HMYFNGQouodz4mFyE7CW8t8LLkNn4Qxty8EQ7BpQrvLgyH2osCd8pOdRo
+
+// …or create a new repository on the command line
+// echo "# ICRM" >> README.md
+// git init
+// git add README.md
+// git commit -m "first commit"
+// git remote add origin git@github.com:kam123ex/ICRM.git
+// git push -u origin master
+
+// …or push an existing repository from the command line
+// git remote add origin git@github.com:kam123ex/ICRM.git
+// git push -u origin master
+// …or import code from another repository
+// You can initialize this repository with code from a Subversion, Mercurial, or TFS project.
