@@ -1,0 +1,283 @@
+<html>
+  <head>
+
+    <!-- FIREBASE -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-analytics.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+
+    <!-- BOOTSTRAP CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- GOOGLE FONTS -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="//fonts.googleapis.com/css?family=Candal"
+    />
+
+    <!-- FONT AWESOME -->
+    <script
+      src="https://kit.fontawesome.com/64273a4a3c.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+      crossorigin="anonymous"
+    />
+
+    <!-- STYLE CSS -->
+    <link rel="stylesheet" href="/design_files/css/admin.css" />
+    <title>ICRM System</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="logo">
+        <h1 class="logo-text"><span>ICRM</span> System</h1>
+      </div>
+      <i class="fa fa-bars menu-toggle"></i>
+      <ul class="nav">
+        <li><a href="/user/<%=userSnap.val().uid%>/home">Home</a></li>
+        <li>
+          <a href="#">
+            <i class="fa fa-user"></i>
+            Information
+            <i class="fa fa-chevron-down" style="font-size: 0.8em;"></i>
+          </a>
+          <ul>
+            <li><a href="/user/<%=userSnap.val().uid%>/profile">Profile</a></li>
+            <% if(userSnap.val().lead == "Yes" ){%>
+            <li><a href="/user/<%=userSnap.val().uid%>/preference">preference</a></li>
+            <%}%>
+            <li>
+              <a href="/user/<%=userSnap.val().uid%>/logout" class="logout"
+                >logout</a
+              >
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </header>
+    <!-- Admin-Wrapper -->
+    <div class="admin-wrapper">
+      <!-- LEFT-SIDEBAR -->
+      <div class="left-sidebar">
+        <ul>
+          <li>
+            <img
+              src="<%= userSnap.val().imagePath%>"
+              alt=""
+              class="img icon rounded-circle mb-5"
+            />
+            <!-- style="background-image: url(../design_files/images/ICON.png);" -->
+            <div>
+              <label for=""><%= userSnap.val().name%></br>
+              <%= userSnap.val().email%>
+              </label>
+            </div>
+          </li>
+          <li>
+            <a href="/user/<%=userSnap.val().uid%>/dashboard">Dashboard</a>
+          </li>
+
+          <li>
+            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">
+              Service <i class="fa fa-chevron-down"></i>
+            </a>
+
+            <ul class="collapse list-unstyled" id="pageSubmenu">
+              <li>
+                <a href="/user/<%=userSnap.val().uid%>/analysis"
+                  >Self Analysis</a
+                >
+              </li>
+              <li>
+                <a href="/user/<%=userSnap.val().uid%>/chatbot">
+                  Chat Bot
+                  <!-- <span class="badge badge-pill badge-danger">2</span> -->
+                </a>
+              </li>
+              <!-- <li>
+                <a href="/user/<%=userSnap.val().uid%>/feedback">Feedback</a>
+              </li> -->
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+      <!-- USER CONTENT -->
+      <div class="admin-content">
+        <h2 class="page-title">Order List</h2>
+        
+        <div>
+          <input id="input" type="text" placeholder="say anything..." autocomplete="off"/>
+        <div style="font-size: 1.5rem;">user: <span id="user"></span></div>
+        <div style="font-size: 1.5rem;">chatbot: <span id="chatbot"></span></div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      var trigger = [
+        ["hi", "hey", "hello"],
+        ["how are you", "how is life", "how are things"],
+        ["what are you doing", "what is going on"],
+        ["how old are you"],
+        ["who are you", "are you human", "are you bot", "are you human or bot"],
+        ["who created you", "who made you"],
+        [
+          "your name please",
+          "your name",
+          "may i know your name",
+          "what is your name",
+        ],
+        ["i love you"],
+        ["happy", "good"],
+        ["bad", "bored", "tired"],
+        ["help me", "tell me story", "tell me joke"],
+        ["ah", "yes", "ok", "okay", "nice", "thanks", "thank you"],
+        ["bye", "good bye", "goodbye", "see you later"],
+        ["what dessert do you have", "what products does your company sell", "what desserts do you sell", "what dessert is selling", "what products do you have"],
+        ["where is the store", "where are store location", "where is the store address", "where are the store location"]
+      ];
+      //  "What dessert do you have","What products does your company sell", "What desserts do you sell"
+      var reply = [
+        ["Hi", "Hey", "Hello"],
+        ["Fine", "Pretty well", "Fantastic"],
+        [
+          "Nothing much",
+          "About to go to sleep",
+          "Can you guest?",
+          "I don't know actually",
+        ],
+        ["I am 1 day old"],
+        ["I am just a bot", "I am a bot. What are you?"],
+        ["Kani Veri", "My God"],
+        ["I am nameless", "I don't have a name"],
+        ["I love you too", "Me too"],
+        ["Have you ever felt bad?", "Glad to hear it"],
+        ["Why?", "Why? You shouldn't!", "Try watching TV"],
+        ["I will", "What about?"],
+        [
+          "Tell me a story",
+          "Tell me a joke",
+          "Tell me about yourself",
+          "You are welcome",
+        ],
+        ["Bye", "Goodbye", "See you later"],
+        ["Our desserts include Blueberry Tart, Brown Sugar Mochi Roll...","We have Matcha Roll, Brown Sugar Mochi Roll...", "Our desserts include Mild Cheese Cake, Lemon Tart..."],
+        ["The address of the shop is Causeway Bay, Jardine's Bazaar, 36 Underground 1",
+          "The location of the shop is Causeway Bay, Jardine's Bazaar, 36 Underground 1",
+          "The Shops at Causeway Bay, Jardine's Bazaar, 36 Underground 1"
+        ]
+      ];
+      // "Our desserts include Blueberry Tart, Brown Sugar Mochi Roll","Our desserts include Matcha Roll, Brown Sugar Mochi Roll", "Our desserts include Mild Cheese Cake, Lemon Tart"
+      var alternative = [
+        "Can you ask again?",
+        "You can ask me the store location or about the products",
+      ];
+      document
+        // Select id = "input" text
+        .querySelector("#input")
+        // Monitoring documents pass the even to "e"
+        .addEventListener("keypress", function (e) {
+          // Check key == "Enter" == "13"
+          var key = e.which || e.keyCode; // (e.which, e.keyCode) == (A-Z key word number)
+          if (key === 13) {
+            // Enter button and print user input
+            var input = document.getElementById("input").value;
+            document.getElementById("user").innerHTML = input;
+            output(input);
+          }
+        });
+
+      function output(input) {
+        try {
+          // Simple count
+          var product = input + "=" + eval(input);
+        } catch (e) {
+          // /g = Perform a global match; /i = Perform case-insensitive matching;
+          // \w = Find a word character; \s = Find a whitespace character; \d = Find a digit
+          var text = input.toLowerCase().replace(/[^\w\s\d]/gi, ""); //remove all chars except words, space and
+          text = text
+            .replace(/ a /g, " ") // replace "a"
+            .replace(/i feel /g, "") // replace "feel"
+            .replace(/whats/g, "what is") // replace "what's"
+            .replace(/please /g, "") // replace "please  "
+            .replace(/ please/g, ""); // replace "  please"
+          if (compare(trigger, reply, text)) {
+            // product == random reply
+            var product = compare(trigger, reply, text);
+          } else {
+            // product == error reply answer
+            var product =
+              alternative[Math.floor(Math.random() * alternative.length)];
+          }
+        }
+        // id = "chatbot"  value = "product"
+        document.getElementById("chatbot").innerHTML = product;
+        // speak the "product" words
+        // speak(product);
+        //clear input value
+        document.getElementById("input").value = "";
+      }
+
+      function compare(arr, array, string) {
+        var item;
+        for (var x = 0; x < arr.length; x++) {
+          for (var y = 0; y < array.length; y++) {
+            // if trigger == input
+            if (arr[x][y] == string) {
+              // items == random reply
+              items = array[x];
+              item = items[Math.floor(Math.random() * items.length)];
+            }
+          }
+        }
+        return item;
+      }
+
+      function speak(string) {
+        var utterance = new SpeechSynthesisUtterance();
+        utterance.voice = speechSynthesis.getVoices().filter(function (voice) {
+          return voice.name == "Agnes";
+        })[0];
+        utterance.text = string;
+        utterance.lang = "en-US";
+        utterance.volume = 1; //0-1 interval
+        utterance.rate = 1;
+        utterance.pitch = 2; //0-2 interval
+        speechSynthesis.speak(utterance);
+      }
+    </script>
+
+    <!-- JQUERY -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/19.0.0/classic/ckeditor.js"></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+      integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+      integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- CUSTOM SCRIPT -->
+    <script src="/js/scripts.js"></script>
+  </body>
+</html>

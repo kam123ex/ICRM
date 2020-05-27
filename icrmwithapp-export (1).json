@@ -1,0 +1,260 @@
+{
+  "Admin": {
+    "12mtbNtT4eRb1hTTfC9QHK661lk1": {
+      "email": "admin@gmail.com",
+      "imagePath": "https://firebasestorage.googleapis.com/v0/b/icrmwithapp.appspot.com/o/default_user_icon.jpg?alt=media&token=9d9eb19f-6172-46d6-8484-827ce2d0744b",
+      "name": "admin",
+      "password": "adminadmin",
+      "phone": "87654321",
+      "userId": "12mtbNtT4eRb1hTTfC9QHK661lk1"
+    }
+  },
+  "Blog": {
+    "I2y5eNsOtDRbebK7yK8WVThJSZI3May 21, 202012:20:11": {
+      "blog_date": "May 21, 2020, 12:20:11",
+      "blog_description": "The View is good",
+      "blog_title": "The View",
+      "blog_user_id": "I2y5eNsOtDRbebK7yK8WVThJSZI3",
+      "image_path": "https://firebasestorage.googleapis.com/v0/b/icrmwithapp.appspot.com/o/Blog%20image%2F46?alt=media&token=31146a1b-db57-4f70-b57e-534a59d7828e"
+    },
+    "YV82kcVoglQQQ5RDPZ1FdgIkPGh1May 22, 202015:07:03": {
+      "blog_date": "May 22, 2020, 15:07:03",
+      "blog_description": "This is a Cafe ",
+      "blog_title": "A cup",
+      "blog_user_id": "YV82kcVoglQQQ5RDPZ1FdgIkPGh1",
+      "image_path": "https://firebasestorage.googleapis.com/v0/b/icrmwithapp.appspot.com/o/Blog%20image%2F47?alt=media&token=07402b20-3e81-4661-9a68-5cd973a064c4"
+    }
+  },
+  "Favorites": {
+    "Users": {
+      "I2y5eNsOtDRbebK7yK8WVThJSZI3": {
+        "Products": {
+          "01": "1",
+          "06": "6"
+        }
+      },
+      "YV82kcVoglQQQ5RDPZ1FdgIkPGh1": {
+        "Products": {
+          "1": "1",
+          "2": "2",
+          "4": "4",
+          "10": "10"
+        }
+      }
+    }
+  },
+  "Orders": {
+    "I2y5eNsOtDRbebK7yK8WVThJSZI3": {
+      "May 21, 202012:11:18": {
+        "2": {
+          "address": "1715 Martin Ave, Santa Clara, CA 95050, USA",
+          "date": "May 21, 2020",
+          "order_id": "May 21, 202012:11:18",
+          "phone": "87654321",
+          "pid": "2",
+          "pname": "BrownSugarMochiRoll",
+          "quantity": "2",
+          "time": "12:11:18",
+          "total_amount": "9860",
+          "user_id": "I2y5eNsOtDRbebK7yK8WVThJSZI3",
+          "user_name": "Peter"
+        },
+        "8": {
+          "address": "1715 Martin Ave, Santa Clara, CA 95050, USA",
+          "date": "May 21, 2020",
+          "order_id": "May 21, 202012:11:18",
+          "phone": "87654321",
+          "pid": "8",
+          "pname": "StrawberryTart",
+          "quantity": "1",
+          "time": "12:11:18",
+          "total_amount": "986038",
+          "user_id": "I2y5eNsOtDRbebK7yK8WVThJSZI3",
+          "user_name": "Peter"
+        }
+      }
+    },
+    "YV82kcVoglQQQ5RDPZ1FdgIkPGh1": {
+      "May 27, 202011:12:0": {
+        "1": {
+          "address": "42 Jardine's Bazaar, Causeway Bay, Hong Kong",
+          "date": "May 27, 2020",
+          "order_id": "May 27, 202011:12:0",
+          "phone": "87654321",
+          "pid": "1",
+          "pname": "BlueberryTart",
+          "quantity": "3",
+          "time": "11:12:0",
+          "total_amount": "257105",
+          "user_id": "YV82kcVoglQQQ5RDPZ1FdgIkPGh1",
+          "user_name": "mary"
+        },
+        "4": {
+          "address": "42 Jardine's Bazaar, Causeway Bay, Hong Kong",
+          "date": "May 27, 2020",
+          "order_id": "May 27, 202011:12:0",
+          "phone": "87654321",
+          "pid": "4",
+          "pname": "MatchaMousse",
+          "quantity": "4",
+          "time": "11:12:0",
+          "total_amount": "257105152",
+          "user_id": "YV82kcVoglQQQ5RDPZ1FdgIkPGh1",
+          "user_name": "mary"
+        }
+      }
+    }
+  },
+  "Preference": {
+    "YV82kcVoglQQQ5RDPZ1FdgIkPGh1": ["Blueberry", "Lemon", "PassionFruit"]
+  },
+  "ProductChi": {
+    "0": {
+      "product_name": "藍莓撻",
+      "product_path": "https://firebasestorage.googleapis.com/v0/b/icrmwithapp.appspot.com/o/product_image%2FBlueberryTart.JPG?alt=media&token=ed6814b0-d469-45fd-ae94-994e330d4d37",
+      "product_price": "35"
+    },
+    "1": {
+      "product_name": "焦糖抹茶卷",
+      "product_path": "https://firebasestorage.googleapis.com/v0/b/icrmwithapp.appspot.com/o/product_image%2FBrownSugarMochiRoll.JPG?alt=media&token=3c49f4f2-b74e-4447-b32d-06583216906c",
+      "product_price": "30"
+    },
+    "2": {
+      "product_name": "檸檬撻",
+      "product_path": "https://firebasestorage.googleapis.com/v0/b/icrmwithapp.appspot.com/o/product_image%2FLemonTart.JPG?alt=media&token=b1543444-d970-46b0-88e8-3da868980ed4",
+      "product_price": "35"
+    },
+    "3": {
+      "product_name": "抹茶慕斯",
+      "product_path": "https://firebasestorage.googleapis.com/v0/b/icrmwithapp.appspot.com/o/product_image%2FMatchaMousse.JPG?alt=media&token=22f72d1b-20de-42af-beb7-29c083fa2e1c",
+      "product_price": "38"
+    },
+    "4": {
+      "product_name": "抹茶卷",
+      "product_path": "https://firebasestorage.googleapis.com/v0/b/icrmwithapp.appspot.com/o/product_image%2FMatchaRoll.JPG?alt=media&token=d332f240-0454-4db4-b0ed-335b69c95606",
+      "product_price": "30"
+    },
+    "5": {
+      "product_name": "輕量芝士蛋糕",
+      "product_path": "https://firebasestorage.googleapis.com/v0/b/icrmwithapp.appspot.com/o/product_image%2FMildCheeseCake.JPG?alt=media&token=c902d8fd-c5f9-4ae2-8b15-67705f5b0ef6",
+      "product_price": "33"
+    },
+    "6": {
+      "product_name": "熱情果撻",
+      "product_path": "https://firebasestorage.googleapis.com/v0/b/icrmwithapp.appspot.com/o/product_image%2FPassionFruitTart.JPG?alt=media&token=c9e8fb35-b50a-4c32-b48b-acd95f7b4be6",
+      "product_price": "35"
+    },
+    "7": {
+      "product_name": "士多啤梨撻",
+      "product_path": "https://firebasestorage.googleapis.com/v0/b/icrmwithapp.appspot.com/o/product_image%2FStrawberryTart.JPG?alt=media&token=223f2029-8680-426b-ad96-41d7aad10d52",
+      "product_price": "38"
+    },
+    "8": {
+      "product_name": "三重朱古力揵",
+      "product_path": "https://firebasestorage.googleapis.com/v0/b/icrmwithapp.appspot.com/o/product_image%2FTripleChocolateTart.JPG?alt=media&token=a5cb757b-d259-471c-b806-95a08efcdc9b",
+      "product_price": "33"
+    },
+    "9": {
+      "product_name": "雲呢拿戚風蛋糕",
+      "product_path": "https://firebasestorage.googleapis.com/v0/b/icrmwithapp.appspot.com/o/product_image%2FVinaChiffonCake.JPG?alt=media&token=3f16c937-bc1e-4e57-a15a-b6edcc92eb24",
+      "product_price": "35"
+    }
+  },
+  "ProductEng": {
+    "0": {
+      "product_name": "BlueberryTart",
+      "product_path": "https://firebasestorage.googleapis.com/v0/b/icrmwithapp.appspot.com/o/product_image%2FBlueberryTart.JPG?alt=media&token=ed6814b0-d469-45fd-ae94-994e330d4d37",
+      "product_price": "35"
+    },
+    "1": {
+      "product_name": "BrownSugarMochiRoll",
+      "product_path": "https://firebasestorage.googleapis.com/v0/b/icrmwithapp.appspot.com/o/product_image%2FBrownSugarMochiRoll.JPG?alt=media&token=3c49f4f2-b74e-4447-b32d-06583216906c",
+      "product_price": "30"
+    },
+    "2": {
+      "product_name": "LemonTart",
+      "product_path": "https://firebasestorage.googleapis.com/v0/b/icrmwithapp.appspot.com/o/product_image%2FLemonTart.JPG?alt=media&token=b1543444-d970-46b0-88e8-3da868980ed4",
+      "product_price": "35"
+    },
+    "3": {
+      "product_name": "MatchaMousse",
+      "product_path": "https://firebasestorage.googleapis.com/v0/b/icrmwithapp.appspot.com/o/product_image%2FMatchaMousse.JPG?alt=media&token=22f72d1b-20de-42af-beb7-29c083fa2e1c",
+      "product_price": "38"
+    },
+    "4": {
+      "product_name": "MatchaRoll",
+      "product_path": "https://firebasestorage.googleapis.com/v0/b/icrmwithapp.appspot.com/o/product_image%2FMatchaRoll.JPG?alt=media&token=d332f240-0454-4db4-b0ed-335b69c95606",
+      "product_price": "30"
+    },
+    "5": {
+      "product_name": "MildCheeseCake",
+      "product_path": "https://firebasestorage.googleapis.com/v0/b/icrmwithapp.appspot.com/o/product_image%2FMildCheeseCake.JPG?alt=media&token=c902d8fd-c5f9-4ae2-8b15-67705f5b0ef6",
+      "product_price": "33"
+    },
+    "6": {
+      "product_name": "PassionFruitTart",
+      "product_path": "https://firebasestorage.googleapis.com/v0/b/icrmwithapp.appspot.com/o/product_image%2FPassionFruitTart.JPG?alt=media&token=c9e8fb35-b50a-4c32-b48b-acd95f7b4be6",
+      "product_price": "35"
+    },
+    "7": {
+      "product_name": "StrawberryTart",
+      "product_path": "https://firebasestorage.googleapis.com/v0/b/icrmwithapp.appspot.com/o/product_image%2FStrawberryTart.JPG?alt=media&token=223f2029-8680-426b-ad96-41d7aad10d52",
+      "product_price": "38"
+    },
+    "8": {
+      "product_name": "TripleChocolateTart",
+      "product_path": "https://firebasestorage.googleapis.com/v0/b/icrmwithapp.appspot.com/o/product_image%2FTripleChocolateTart.JPG?alt=media&token=a5cb757b-d259-471c-b806-95a08efcdc9b",
+      "product_price": "33"
+    },
+    "9": {
+      "product_name": "VinaChiffonCake",
+      "product_path": "https://firebasestorage.googleapis.com/v0/b/icrmwithapp.appspot.com/o/product_image%2FVinaChiffonCake.JPG?alt=media&token=3f16c937-bc1e-4e57-a15a-b6edcc92eb24",
+      "product_price": "35"
+    }
+  },
+  "Users": {
+    "I2y5eNsOtDRbebK7yK8WVThJSZI3": {
+      "createDate": "5/21/20",
+      "email": "peter@gmail.com",
+      "imagePath": "https://firebasestorage.googleapis.com/v0/b/icrmwithapp.appspot.com/o/default_user_icon.jpg?alt=media&token=9d9eb19f-6172-46d6-8484-827ce2d0744b",
+      "lead": "No",
+      "name": "peter",
+      "password": "12345678",
+      "phone": "87654321",
+      "uid": "I2y5eNsOtDRbebK7yK8WVThJSZI3"
+    },
+    "YV82kcVoglQQQ5RDPZ1FdgIkPGh1": {
+      "createDate": "5/21/20",
+      "email": "mary@gmail.com",
+      "imagePath": "https://firebasestorage.googleapis.com/v0/b/icrmwithapp.appspot.com/o/user_icons%2Fimage%3A42?alt=media&token=00e0957f-71b7-4054-83e9-e9656d43ad47",
+      "lead": "Yes",
+      "name": "mary",
+      "password": "12345678",
+      "phone": "87654322",
+      "uid": "YV82kcVoglQQQ5RDPZ1FdgIkPGh1"
+    }
+  },
+  "blogs": {
+    "2020-05-25:6:28:22": {
+      "author": "The Angular",
+      "categories": ["ninjas"],
+      "content": "Blog Blog Blog Blog Blog Blog Blog Blog Blog Blog Blog Blog Blog Blog Blog Blog Blog Blog Blog Blog Blog Blog Blog Blog Blog Blog Blog Blog Blog Blog Blog Blog ",
+      "id": "2020-05-25:6:28:22",
+      "title": "Title 1"
+    },
+    "2020-05-25:6:28:33": {
+      "author": "The Vue Vindicator",
+      "categories": ["mario"],
+      "content": " Content: Content: Content: Content: Content: Content: Content: Content: Content: Content: Content: Content: Content: Content: Content: Content: Content: Content: Content: Content: Content: Content:",
+      "id": "2020-05-25:6:28:33",
+      "title": "Title 2"
+    }
+  },
+  "employee": {
+    "Ywiddc2MiKYQDiB9CTFmNzEJMIC2": {
+      "email": "nb4@gmail.com",
+      "name": "nb4",
+      "password": "12345678"
+    }
+  }
+}

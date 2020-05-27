@@ -1,0 +1,206 @@
+<html>
+  <head>
+    <!-- FIREBASE -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-analytics.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+
+    <!-- BOOTSTRAP CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- GOOGLE FONTS -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="//fonts.googleapis.com/css?family=Candal"
+    />
+
+    <!-- FONT AWESOME -->
+    <script
+      src="https://kit.fontawesome.com/64273a4a3c.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+      crossorigin="anonymous"
+    />
+
+    <!-- STYLE CSS -->
+    <link rel="stylesheet" href="/design_files/css/admin.css" />
+    <title>ICRM System</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="logo">
+        <h1 class="logo-text"><span>ICRM</span> System</h1>
+      </div>
+      <i class="fa fa-bars menu-toggle"></i>
+      <ul class="nav">
+        <li><a href="/admin/users">Users</a></li>
+        <li>
+          <a href="#">
+            <i class="fa fa-user"></i>
+            Information
+            <i class="fa fa-chevron-down" style="font-size: 0.8em;"></i>
+          </a>
+          <ul>
+            <li><a href="/admin/profile">Profile</a></li>
+
+            <li><a href="/admin/logout" class="logout">logout</a></li>
+          </ul>
+        </li>
+      </ul>
+    </header>
+    <!-- Admin-Wrapper -->
+    <div class="admin-wrapper">
+      <!-- LEFT-SIDEBAR -->
+      <div class="left-sidebar">
+        <ul>
+          <li>
+            <img
+              src="https://firebasestorage.googleapis.com/v0/b/icrmwithapp.appspot.com/o/admin_icon.png?alt=media&token=6a3c6db9-411a-4b05-a9a1-035d57edf4dd"
+              alt=""
+              class="img icon rounded-circle mb-5"
+            />
+            <label for="">Admin</label>
+          </li>
+          <li><a href="/admin/home">Home</a></li>
+          <li><a href="/admin/dashboard">Dashboard</a></li>
+          <li>
+            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">
+              Analysis
+              <i class="fa fa-chevron-down"></i>
+            </a>
+            <ul class="collapse list-unstyled" id="pageSubmenu">
+              <li><a href="/admin/popularAnalysis">Popular Analysis</a></li>
+              <li><a href="/admin/usersAnalysis">Users Analysis</a></li>
+            </ul>
+          </li>
+
+          <li>
+            <a href="/admin/chatting">
+              Chatting
+              <span class="badge badge-pill badge-danger">2</span>
+            </a>
+          </li>
+          <li><a href="/admin/newProduct">Add New Product</a></li>
+        </ul>
+      </div>
+
+      <!-- USER CONTENT -->
+      <div class="admin-content">
+        <h2 class="page-title">Chat bot</h2>
+        <div class="row">
+          <div class="col-sm-4 conversation app-one">
+            <div class="heading">
+              <div class="col-sm-6 col-md-3 col-xs-4 heading-avatar">
+                <div class="heading-avatar-icon">
+                  <img src="images/avatar.png" />
+                </div>
+              </div>
+              <div class="col-sm-6 col-xs-6 heading-name">
+                <a class="heading-name-meta">Help Desk </a>
+                <span class="heading-online">Online</span>
+              </div>
+              <div class="col-sm-1 col-xs-1 heading-dot pull-right">
+                <i
+                  class="fa fa-ellipsis-v fa-2x pull-right"
+                  aria-hidden="true"
+                ></i>
+              </div>
+            </div>
+            <div class="row message" id="conversation">
+              <div class="row message-previous">
+                <div class="col-sm-12 previous">
+                  <a onclick="previous(this)" id="ankitjain28" name="20">
+                    Show Previous Message!
+                  </a>
+                </div>
+              </div>
+              <div class="row message-body">
+                <div class="col-sm-12 message-main-receiver">
+                  <div class="receiver">
+                    <div class="message-text">
+                      Hi, How can I help you today
+                    </div>
+                    <span class="message-time pull-right">
+                      Sun
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="row message-body">
+                <div class="col-sm-12 message-main-sender">
+                  <div class="sender">
+                    <div class="message-text">
+                      I am doing nothing man!
+                    </div>
+                    <span class="message-time pull-right">
+                      Sun
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row reply">
+              <div class="col-sm-1 col-xs-1 reply-emojis">
+                <i class="fa fa-smile-o fa-2x"></i>
+              </div>
+              <div class="col-sm-8 col-xs-8 reply-main">
+                <textarea
+                  class="form-control"
+                  rows="2"
+                  id="comment"
+                  onkeypress="replyMain(event)"
+                ></textarea>
+              </div>
+              <div class="col-sm-2 col-xs-2 reply-recording">
+                <i
+                  class="fa fa-microphone fa-2x"
+                  aria-hidden="true"
+                  id="microphone-send"
+                ></i>
+              </div>
+              <div class="col-sm-2 col-xs-2 reply-send">
+                <i
+                  class="fa fa-send fa-2x"
+                  aria-hidden="true"
+                  id="chat-send"
+                ></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JQUERY -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/19.0.0/classic/ckeditor.js"></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+      integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+      integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- CUSTOM SCRIPT -->
+    <script src="/js/scripts.js"></script>
+  </body>
+</html>
