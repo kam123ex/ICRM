@@ -38,18 +38,18 @@
 
     <!-- STYLE CSS -->
     <link rel="stylesheet" href="/design_files/css/admin.css" />
+
     <title>ICRM System</title>
   </head>
-  <!-- <h1 class="logo-text" ><img src="../../design_files/images/IC" alt=""></h1> -->
 
   <body>
     <header>
       <div class="logo">
-        <h1 class="logo-text"><span>ICRM</span> System</h1>
+        <img src="../design_files/images/ICON.png" alt="" />
+        <!-- <h1 class="logo-text"><span>ICRM</span> System</h1> -->
       </div>
       <i class="fa fa-bars menu-toggle"></i>
       <ul class="nav">
-        <li><a href="/admin/users">Users</a></li>
         <li>
           <a href="#">
             <i class="fa fa-user"></i>
@@ -79,7 +79,8 @@
           </li>
           <li><a href="/admin/home">Home</a></li>
           <li><a href="/admin/dashboard">Dashboard</a></li>
-          <li>
+          <li><a href="/admin/users">Users</a></li>
+          <!-- <li>
             <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">
               Analysis
               <i class="fa fa-chevron-down"></i>
@@ -89,67 +90,79 @@
               <li><a href="/admin/usersAnalysis">Users Analysis</a></li>
             </ul>
           </li>
-
           <li>
             <a href="/admin/chatting">
               Chatting
               <span class="badge badge-pill badge-danger">2</span>
             </a>
           </li>
-          <li><a href="#">Service</a></li>
+          <li><a href="/admin/newProduct">New Product</a></li> -->
         </ul>
       </div>
 
-      <!-- USER CONTENT -->
+      <!-- Admin CONTENT -->
       <div class="admin-content">
         <div>
-          <h2 class="page-title" >Order Dashboard</h2>
-          <h2 class="page-title" ></h2>
-          <ul style="list-style: none;">
-            <li><canvas id="myChart" class="chart"></canvas></li>
-          </ul>
+          <h2 class="page-title"><%=snapShort.val().name%></h2>
         </div>
+        <form action="/admin/user/<%=snapShort.val().uid%>" method="POST">
+          <div class="form=group">
+            <label for="">Name</label>
+            <input
+              type="text"
+              name="name"
+              id="title"
+              class="form-control"
+              value="<%=snapShort.val().name%>"
+              required
+            />
+          </div>
+          <div class="form=group">
+            <label for="">Email Address</label>
+            <input
+              type="text"
+              name="email"
+              id="title"
+              class="form-control"
+              value="<%=snapShort.val().email%>"
+              required
+            />
+          </div>
+          <div class="form=group">
+            <label for="">Phone Number</label>
+            <input
+              type="text"
+              name="phone"
+              id="title"
+              class="form-control"
+              value="<%=snapShort.val().phone%>"
+              required
+            />
+          </div>
+          <div class="form=group">
+            <label for="">Password</label>
+            <input
+              type="text"
+              name="password"
+              id="title"
+              class="form-control"
+              value="<%=snapShort.val().password%>"
+              required
+            />
+          </div>
 
-        <script>
-var ctx = document.getElementById('myChart');
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange', 'Orange', 'Orange', 'Orange', 'Orange'],
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3,2,3, 5, 6],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(0, 191, 255, 0.2)',
-                'rgba(5, 159, 64, 0.2)',
-                'rgba(43, 243, 0, 0.2)',
-                'rgba(255, 0, 64, 0.2)',
-                'rgba(0, 58, 255, 0.2)'
-            ],
-            
-            borderWidth: 2
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        }
-    }
-});
-        </script>
-        </div>
+          <div class="form=group">
+            <a href="/admin/home" class="btn btn-Danger">Cancel</a>
+            <button type="submit" class="btn btn-primary">Save</button>
+          </div>
+        </form>
+        <div></div>
       </div>
     </div>
-   <!-- JQUERY -->
+    <!-- <th>Action</th> -->
+    <!-- <td><a href="/admin/home/edit" class="edit">edit</a></td> -->
+
+    <!-- JQUERY -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/19.0.0/classic/ckeditor.js"></script>
     <script

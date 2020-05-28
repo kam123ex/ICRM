@@ -49,7 +49,7 @@
       </div>
       <i class="fa fa-bars menu-toggle"></i>
       <ul class="nav">
-        <li><a href="/user/<%=userSnap.val().uid%>/home">Home</a></li>
+        <li><a href="/user/<%=userId%>/home">Home</a></li>
         <li>
           <a href="#">
             <i class="fa fa-user"></i>
@@ -57,12 +57,12 @@
             <i class="fa fa-chevron-down" style="font-size: 0.8em;"></i>
           </a>
           <ul>
-            <li><a href="/user/<%=userSnap.val().uid%>/profile">Profile</a></li>
-            <% if(userSnap.val().lead == "Yes" ){%>
-            <li><a href="/user/<%=userSnap.val().uid%>/preference">preference</a></li>
+            <li><a href="/user/<%=userId%>/profile">Profile</a></li>
+            <% if(lead == "Yes" ){%>
+            <li><a href="/user/<%=userId%>/preference">preference</a></li>
             <%}%>
             <li>
-              <a href="/user/<%=userSnap.val().uid%>/logout" class="logout"
+              <a href="/user/<%=userId%>/logout" class="logout"
                 >logout</a
               >
             </li>
@@ -77,19 +77,19 @@
         <ul>
           <li>
             <img
-              src="<%= userSnap.val().imagePath%>"
+              src="<%= imagePath%>"
               alt=""
               class="img icon rounded-circle mb-5"
             />
             <!-- style="background-image: url(../design_files/images/ICON.png);" -->
             <div>
-              <label for=""><%= userSnap.val().name%></br>
-              <%= userSnap.val().email%>
+              <label for=""><%= name%></br>
+              <%= email%>
               </label>
             </div>
           </li>
           <li>
-            <a href="/user/<%=userSnap.val().uid%>/dashboard">Dashboard</a>
+            <a href="/user/<%=userId%>/dashboard">Dashboard</a>
           </li>
 
           <li>
@@ -99,23 +99,21 @@
 
             <ul class="collapse list-unstyled" id="pageSubmenu">
               <li>
-                <a href="/user/<%=userSnap.val().uid%>/analysis"
+                <a href="/user/<%=userId%>/analysis"
                   >Self Analysis</a
                 >
               </li>
               <li>
-                <a href="/user/<%=userSnap.val().uid%>/chatbot">
+                <a href="/user/<%=userId%>/chatbot">
                   Chat Bot
-                  <!-- <span class="badge badge-pill badge-danger">2</span> -->
                 </a>
               </li>
-              <!-- <li>
-                <a href="/user/<%=userSnap.val().uid%>/feedback">Feedback</a>
-              </li> -->
+
             </ul>
           </li>
         </ul>
       </div>
+
       <!-- USER CONTENT -->
       <div class="admin-content">
         <div>

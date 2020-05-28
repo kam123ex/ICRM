@@ -233,9 +233,9 @@ router.post("/email", (req, res) => {
 });
 
 // Create Product===========
-router.get("/newProduct", (req, res) => {
-  res.render("admin/newProduct");
-});
+// router.get("/newProduct", (req, res) => {
+//   res.render("admin/newProduct");
+// });
 
 // router.post("/newProduct", (req, res) => {
 //   let product_name = req.body.product_name;
@@ -296,6 +296,7 @@ router.get("/newProduct", (req, res) => {
 router.get("/logout", (req, res, next) => {
   currentUser = firebase.auth().currentUser;
   if (currentUser != null) {
+    console.log(currentUser.uid);
     firebase
       .auth()
       .signOut()
