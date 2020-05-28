@@ -98,33 +98,107 @@ router.get("/:id/dashboard", (req, res, next) => {
 // Chat bot
 router.get("/:id/chatbot", (req, res) => {
   userId = req.params.id;
-  console.log(userId);
-  userRef.child(userId).on("value", (userSnap) => {
-    console.log(userSnap.val());
-    res.render("user/chatbot", { userId: userId, userSnap: userSnap });
-  });
+  let lead;
+  let name;
+  let email;
+  let imagePath;
+  postCheck = false;
+  userRef
+    .child(userId)
+    .once("value", (userSnap) => {
+      lead = userSnap.val().lead;
+      name = userSnap.val().name;
+      imagePath = userSnap.val().imagePath;
+    })
+    .then((u) => {
+      res.render(`user/chatbot`, {
+        userId: userId,
+        name: name,
+        email: email,
+        imagePath: imagePath,
+        lead: lead,
+      });
+    })
+    .catch(function (error) {
+      // Handle Errors here
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      console.log(errorCode);
+      console.log(errorMessage);
+      res.render(`/user/chatbot`, { userSnap: userSnap });
+    });
 });
 
 // User analysis
 router.get("/:id/analysis", (req, res) => {
   userId = req.params.id;
-  console.log(userId);
-  userRef.child(userId).on("value", (userSnap) => {
-    console.log(userSnap.val());
-    res.render("user/analysis", { userId: userId, userSnap: userSnap });
+  let lead;
+  let name;
+  let email;
+  let imagePath;
+  postCheck = false;
+  userRef.child(userId).once("value", (userSnap) => {
+    lead = userSnap.val().lead;
+    name = userSnap.val().name;
+    imagePath = userSnap.val().imagePath;
   });
+
+  orderRef
+    .child(userId)
+    .once("value", (orderShort) => {})
+    .then((orderShort) => {
+      res.render(`user/analysis`, {
+        orderShort: orderShort,
+        userId: userId,
+        name: name,
+        email: email,
+        imagePath: imagePath,
+        lead: lead,
+      });
+    })
+    .catch(function (error) {
+      // Handle Errors here
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      console.log(errorCode);
+      console.log(errorMessage);
+      res.render(`/user/analysis`, { userSnap: userSnap });
+    });
 });
 
 // User Preference
 router.get("/:id/preference", (req, res) => {
   userId = req.params.id;
-  userRef.child(userId).on("value", (userSnap) => {
-    res.render("user/preference", {
-      userId: userId,
-      userSnap: userSnap,
-      postCheck: postCheck,
+  let lead;
+  let name;
+  let email;
+  let imagePath;
+  userRef
+    .child(userId)
+    .once("value", (userSnap) => {
+      lead = userSnap.val().lead;
+      name = userSnap.val().name;
+      imagePath = userSnap.val().imagePath;
+    })
+    .then((userSnap) => {
+      res.render(`user/preference`, {
+        userId: userId,
+        name: name,
+        email: email,
+        imagePath: imagePath,
+        lead: lead,
+        userSnap: userSnap,
+        postCheck: postCheck,
+      });
+    })
+    .catch(function (error) {
+      // Handle Errors here
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      console.log(errorCode);
+      console.log(errorMessage);
+      res.render(`/user/preference`, { userSnap: userSnap });
     });
-  });
 });
 
 router.post("/:id/preference", (req, res) => {
@@ -211,19 +285,71 @@ router.post("/:id/preference", (req, res) => {
 // User Profile
 router.get("/:id/profile", (req, res) => {
   userId = req.params.id;
-  console.log(userId);
-  userRef.child(userId).on("value", (userSnap) => {
-    res.render("user/profile", { userId: userId, userSnap: userSnap });
-  });
+  let lead;
+  let name;
+  let email;
+  let imagePath;
+  userRef
+    .child(userId)
+    .once("value", (userSnap) => {
+      lead = userSnap.val().lead;
+      name = userSnap.val().name;
+      imagePath = userSnap.val().imagePath;
+    })
+    .then((userSnap) => {
+      res.render(`user/profile`, {
+        userId: userId,
+        name: name,
+        email: email,
+        imagePath: imagePath,
+        lead: lead,
+        userSnap: userSnap,
+        postCheck: postCheck,
+      });
+    })
+    .catch(function (error) {
+      // Handle Errors here
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      console.log(errorCode);
+      console.log(errorMessage);
+      res.render(`/user/profile`, { userSnap: userSnap });
+    });
 });
 
 // User Edit Profile
 router.get("/:id/edit", (req, res) => {
   userId = req.params.id;
-  console.log(userId);
-  userRef.child(userId).on("value", (userSnap) => {
-    res.render("user/edit", { userId: userId, userSnap: userSnap });
-  });
+  let lead;
+  let name;
+  let email;
+  let imagePath;
+  userRef
+    .child(userId)
+    .once("value", (userSnap) => {
+      lead = userSnap.val().lead;
+      name = userSnap.val().name;
+      imagePath = userSnap.val().imagePath;
+    })
+    .then((userSnap) => {
+      res.render(`user/edit`, {
+        userId: userId,
+        name: name,
+        email: email,
+        imagePath: imagePath,
+        lead: lead,
+        userSnap: userSnap,
+        postCheck: postCheck,
+      });
+    })
+    .catch(function (error) {
+      // Handle Errors here
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      console.log(errorCode);
+      console.log(errorMessage);
+      res.render(`/user/edit`, { userSnap: userSnap });
+    });
 });
 
 router.post("/:id/edit", (req, res) => {
@@ -305,7 +431,7 @@ router.post("/:id/feedback", (req, res) => {
 
 router.get("/:id/logout", (req, res, next) => {
   currentUser = firebase.auth().currentUser;
-  console.log(currentUser.uid);
+  console.log(currentUser);
   if (currentUser != null) {
     firebase
       .auth()

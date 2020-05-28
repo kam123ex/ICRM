@@ -48,9 +48,9 @@ router.get("/home", (req, res) => {
     });
 });
 
-router.get("/dashboardTest", (req, res) => {
-  res.render("admin/dashboardTest");
-});
+// router.get("/dashboardTest", (req, res) => {
+//   res.render("admin/dashboardTest");
+// });
 
 router.get("/dashboard", (req, res, next) => {
   orderRef

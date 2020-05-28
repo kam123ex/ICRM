@@ -108,133 +108,109 @@
                   Chat Bot
                 </a>
               </li>
-
+              <li>
+                <a href="/user/<%=userId%>/feedback">
+                  Feedback
+                </a>
+              </li>
             </ul>
           </li>
         </ul>
       </div>
 
       <!-- USER CONTENT -->
-      <div class="admin-content">
-        <div>
-          <h2 class="page-title" >
-            Order Dashboard
-          <button class="btn btn-success" onClick="updateChart()">Update</button>
+        <div class="admin-content">
+          <div>
+            <h2 class="page-title" >
+              Order Dashboard
+              <button class="btn btn-success" onClick="updateChart(chartQuantity)">Update</button>
+            </h2>
+            <ul style="list-style: none;">
+              <li><canvas id="myChart" class="chart"></canvas></li>
+            </ul>
+          </div>
 
-          </h2>
-          <canvas id="myChart" class="chart"></canvas>
-          <canvas id="myChart2" class="chart"></canvas>
+          <script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyB_1VMzJtMkZEde232VmRfBMaGpInoI9AQ",
+    authDomain: "icrmwithapp.firebaseapp.com",
+    databaseURL: "https://icrmwithapp.firebaseio.com",
+    projectId: "icrmwithapp",
+    storageBucket: "icrmwithapp.appspot.com",
+    messagingSenderId: "171999039359",
+    appId: "1:171999039359:web:61cecf068d46524f4fd44a",
+    measurementId: "G-BM78VBEL13",
+  }
+  firebase.initializeApp(firebaseConfig)
+  database = firebase.database()
+  let productRef = database.ref("ProductEng")
+  Chart.defaults.global.defaultFontFamily = "Lato";
+  Chart.defaults.global.defaultFontSize = 18;
+  Chart.defaults.global.defaultFontColor = "#D4AF37";
+  let chartProduct = [];
+  var q1 = 0,
+    q2 = 0,
+    q3 = 0,
+    q4 = 0,
+    q5 = 0,
+    q6 = 0,
+    q7 = 0,
+    q8 = 0,
+    q9 = 0,
+    q10 = 0;
+  var chartQuantity = [q1, q2, q3, q4, q5, q6, q7, q8, q9, q10];
+  let newQuantity = 0;
+  let counted = 0;
+  productRef.once('value', products=>{
+    products.forEach(productsName=>{
+      chartProduct.push(productsName.val().product_name)
+    })
+  })
 
-        </div>
+  "<% orderShort.forEach((products)=>{%>"
+      "<% products.forEach((productID)=>{%>"
+        newQuantity = parseInt("<%= productID.val().quantity%>")
+        counted = newQuantity + chartQuantity[parseInt("<%= productID.val().pid%>")]
+        chartQuantity[parseInt("<%= productID.val().pid%>")] = counted;
+    "<%})%>"
+  "<%})%>"
 
-        <script>
-          // Global Options
-          Chart.defaults.global.defaultFontFamily= 'Lato';
-          Chart.defaults.global.defaultFontSize= 18;
-          Chart.defaults.global.defaultFontColor= '#D4AF37';
-          let olddata = [1, 0, 3, 5, 4]
-          let chartX = [4, 5, 3, 2, 1] 
-          let olddata1 = [5, 7, 10, 5, 1]
-          let newdata1 = [8, 8, 10, 7, 3]
-          let ctx = document.getElementById('myChart').getContext('2d');
-          let ctx2 = document.getElementById('myChart2').getContext('2d');
-          let chart = new Chart(ctx, {
-            type:'bar', //pie; bar, horizontalBar, pie, line
-            data:{
-              labels:['BlueberryTart', 'BrownSugarMochiRoll', 'LemonTart', 'MatchaMousse'],
-              datasets:[{
-                label:["Orders Record"],
-                backgroundColor:[ '#60ACFC' ],
-                data:olddata,
-              },
-              {
-          label:["Orders Recordsss"],
-              backgroundColor:[ '#40ACFC' ],
-                data:olddata1,
-              }]
-            },
+    function updateChart(){
+      chart.data.datasets.forEach(chartData=>{
+        chartData.data = chartQuantity
+      })
+      chart.update();
+    }
+    
+    let ctx = document.getElementById("myChart");
+    let chart = new Chart(ctx, {
+      type: "bar", //pie; bar, horizontalBar, pie, line
+      data: {
+        labels: chartProduct,
+        datasets: [
+          {
+            label:[ 'All Orders'],
+            backgroundColor: [
+              'rgba(255, 99, 132, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(255, 206, 86, 0.2)',
+              'rgba(75, 192, 192, 0.2)',
+              'rgba(153, 102, 206, 0.2)',
+              'rgba(153, 102, 255, 0.2)',
+              'rgba(75, 102, 255, 0.2)',
+              'rgba(0, 191, 255, 0.2)',
+              'rgba(5, 159, 64, 0.2)',
+              'rgba(43, 243, 0, 0.2)'],
+          data: chartQuantity,
+          borderWidth: 2,
+          },
+        ],
+      },
 
-            options:{}
-          })
+      options: {},
+    });
 
-          let chart2 = new Chart(ctx2, {
-            type:'line', //pie; bar, horizontalBar, pie, line
-            data:{
-              labels:['BlueberryTart', 'BrownSugarMochiRoll', 'LemonTart', 'MatchaMousse'],
-              datasets:[{
-                label:["Orders Record"],
-                backgroundColor:[ '#60ACFC' ],
-                data:olddata,
-              },
-              {
-          label:["Orders Recordsss"],
-              backgroundColor:[ '#40ACFC' ],
-                data:olddata1,
-              }]
-            },
-
-            options:{}
-          })
-
-             
-          function updateChart(){
-            // chart.data.database[0].data = variable
-            chart.data.datasets[0].data = newdata
-            chart.data.datasets[1].data = newdata1
-            chart.update();
-chart.data.labels=['BlueberryTart', 'BrownSugarMochiRoll', 'LemonTart', 'MatchaMousse']
-            
-          }
-// let massPopChart = new Chart(myChart, {…
-//             type:'line', //pie; bar, horizontalBar, pie, line
-//             data:{
-//               labels:['BlueberryTart', 'BrownSugarMochiRoll', 'LemonTart', 'MatchaMousse'],
-//               datasets:[{
-//                 label:["Orders Record"],
-//                 data:[1, 5, 4, 0, 3],
-//                 backgroundColor:[
-//                   '#60ACFC',
-//                   '#32D3EB',
-//                   '#5BC49F',
-//                   '#FEB64D',
-//                   '#FF7C7C',
-//                   '#9287E7'
-//               ],
-//               borderWidth:1,
-//               borderColor:'#777',
-//               hoverBorderWidth:3,
-//               borderWidthColor:'#000',
-//               }]
-//             },
-//               options:{
-//                 title:{
-//                   display:true,
-//                   text:'My Orders',
-//                   fontSize:25
-//                 },
-//                 legend:{
-//                   display:true,
-//                   position:'right',
-//                   labels:{
-//                     fontColor:'#777'
-                    
-//                   }
-//                 },
-//                 layout:{
-//                   width:200,
-//                   padding:{
-//                     left:0,
-//                     right:0,
-//                     bottom:0,
-//                     top:0
-//                   },
-//                 },
-//                 tooltips:{
-//                   enabled:true
-//                 }
-//               }
-//           })
-        </script>
+          </script>
         </div>
       </div>
     </div>

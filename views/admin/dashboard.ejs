@@ -99,100 +99,100 @@
       </div>
 
       <!-- Admin CONTENT -->
-      <div class="admin-content">
-        <div>
-          <h2 class="page-title" >
-            Order Dashboard
-            <button class="btn btn-success" onClick="updateChart(chartQuantity)">Update</button>
-          </h2>
-          <ul style="list-style: none;">
-            <li><canvas id="myChart" class="chart"></canvas></li>
-          </ul>
-        </div>
+        <div class="admin-content">
+          <div>
+            <h2 class="page-title" >
+              Order Dashboard
+              <button class="btn btn-success" onClick="updateChart(chartQuantity)">Update</button>
+            </h2>
+            <ul style="list-style: none;">
+              <li><canvas id="myChart" class="chart"></canvas></li>
+            </ul>
+          </div>
 
-        <script>
-const firebaseConfig = {
-  apiKey: "AIzaSyB_1VMzJtMkZEde232VmRfBMaGpInoI9AQ",
-  authDomain: "icrmwithapp.firebaseapp.com",
-  databaseURL: "https://icrmwithapp.firebaseio.com",
-  projectId: "icrmwithapp",
-  storageBucket: "icrmwithapp.appspot.com",
-  messagingSenderId: "171999039359",
-  appId: "1:171999039359:web:61cecf068d46524f4fd44a",
-  measurementId: "G-BM78VBEL13",
-}
-firebase.initializeApp(firebaseConfig)
-database = firebase.database()
-let productRef = database.ref("ProductEng")
-Chart.defaults.global.defaultFontFamily = "Lato";
-Chart.defaults.global.defaultFontSize = 18;
-Chart.defaults.global.defaultFontColor = "#D4AF37";
-let chartProduct = [];
-var q1 = 0,
-  q2 = 0,
-  q3 = 0,
-  q4 = 0,
-  q5 = 0,
-  q6 = 0,
-  q7 = 0,
-  q8 = 0,
-  q9 = 0,
-  q10 = 0;
-var chartQuantity = [q1, q2, q3, q4, q5, q6, q7, q8, q9, q10];
-let newQuantity = 0;
-let counted = 0;
-productRef.once('value', products=>{
-  products.forEach(productsName=>{
-    chartProduct.push(productsName.val().product_name)
+          <script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyB_1VMzJtMkZEde232VmRfBMaGpInoI9AQ",
+    authDomain: "icrmwithapp.firebaseapp.com",
+    databaseURL: "https://icrmwithapp.firebaseio.com",
+    projectId: "icrmwithapp",
+    storageBucket: "icrmwithapp.appspot.com",
+    messagingSenderId: "171999039359",
+    appId: "1:171999039359:web:61cecf068d46524f4fd44a",
+    measurementId: "G-BM78VBEL13",
+  }
+  firebase.initializeApp(firebaseConfig)
+  database = firebase.database()
+  let productRef = database.ref("ProductEng")
+  Chart.defaults.global.defaultFontFamily = "Lato";
+  Chart.defaults.global.defaultFontSize = 18;
+  Chart.defaults.global.defaultFontColor = "#D4AF37";
+  let chartProduct = [];
+  var q1 = 0,
+    q2 = 0,
+    q3 = 0,
+    q4 = 0,
+    q5 = 0,
+    q6 = 0,
+    q7 = 0,
+    q8 = 0,
+    q9 = 0,
+    q10 = 0;
+  var chartQuantity = [q1, q2, q3, q4, q5, q6, q7, q8, q9, q10];
+  let newQuantity = 0;
+  let counted = 0;
+  productRef.once('value', products=>{
+    products.forEach(productsName=>{
+      chartProduct.push(productsName.val().product_name)
+    })
   })
-})
 
-"<% orderData.forEach((userID)=>{%>"
-  "<% userID.forEach((products)=>{%>"
-    "<% products.forEach((productID)=>{%>"
-      newQuantity = parseInt("<%= productID.val().quantity%>")
-      counted = newQuantity + chartQuantity[parseInt("<%= productID.val().pid%>")]
-      chartQuantity[parseInt("<%= productID.val().pid%>")] = counted;
+  "<% orderData.forEach((userID)=>{%>"
+    "<% userID.forEach((products)=>{%>"
+      "<% products.forEach((productID)=>{%>"
+        newQuantity = parseInt("<%= productID.val().quantity%>")
+        counted = newQuantity + chartQuantity[parseInt("<%= productID.val().pid%>")]
+        chartQuantity[parseInt("<%= productID.val().pid%>")] = counted;
+      "<%})%>"
     "<%})%>"
   "<%})%>"
-"<%})%>"
 
-  function updateChart(){
-    chart.data.datasets.forEach(chartData=>{
-      chartData.data = chartQuantity
-    })
-    chart.update();
-  }
-  
-  let ctx = document.getElementById("myChart");
-  let chart = new Chart(ctx, {
-    type: "bar", //pie; bar, horizontalBar, pie, line
-    data: {
-      labels: chartProduct,
-      datasets: [
-        {
-          label:[ '# of Votes'],
-          backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(255, 206, 86, 0.2)',
-            'rgba(75, 192, 192, 0.2)',
-            'rgba(153, 102, 206, 0.2)',
-            'rgba(153, 102, 255, 0.2)',
-            'rgba(75, 102, 255, 0.2)',
-            'rgba(0, 191, 255, 0.2)',
-            'rgba(5, 159, 64, 0.2)',
-            'rgba(43, 243, 0, 0.2)'],
-        data: chartQuantity,
-        borderWidth: 2,
-        },
-      ],
-    },
+    function updateChart(){
+      chart.data.datasets.forEach(chartData=>{
+        chartData.data = chartQuantity
+      })
+      chart.update();
+    }
+    
+    let ctx = document.getElementById("myChart");
+    let chart = new Chart(ctx, {
+      type: "bar", //pie; bar, horizontalBar, pie, line
+      data: {
+        labels: chartProduct,
+        datasets: [
+          {
+            label:[ 'All Orders'],
+            backgroundColor: [
+              'rgba(255, 99, 132, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(255, 206, 86, 0.2)',
+              'rgba(75, 192, 192, 0.2)',
+              'rgba(153, 102, 206, 0.2)',
+              'rgba(153, 102, 255, 0.2)',
+              'rgba(75, 102, 255, 0.2)',
+              'rgba(0, 191, 255, 0.2)',
+              'rgba(5, 159, 64, 0.2)',
+              'rgba(43, 243, 0, 0.2)'],
+          data: chartQuantity,
+          borderWidth: 2,
+          },
+        ],
+      },
 
-    options: {},
-  });
+      options: {},
+    });
 
-        </script>
+          </script>
         </div>
       </div>
     </div>
