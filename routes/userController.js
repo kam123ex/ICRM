@@ -11,7 +11,7 @@ const preferenceRef = database.ref("Preference");
 
 let currentUser;
 let userId;
-let sendEmail = false;
+let postCheck = false;
 function UsersSchema(
   createDate,
   email,
@@ -38,6 +38,7 @@ router.get("/:id/home", (req, res) => {
   let name;
   let email;
   let imagePath;
+  postCheck = false;
   userRef.child(userId).once("value", (userSnap) => {
     lead = userSnap.val().lead;
     name = userSnap.val().name;
@@ -121,7 +122,7 @@ router.get("/:id/preference", (req, res) => {
     res.render("user/preference", {
       userId: userId,
       userSnap: userSnap,
-      sendEmail: sendEmail,
+      postCheck: postCheck,
     });
   });
 });
@@ -191,7 +192,7 @@ router.post("/:id/preference", (req, res) => {
         if (error) {
           console.log(error);
         } else {
-          sendEmail = true;
+          postCheck = true;
           res.redirect(`/user/${userId}/preference`);
           console.log("Email sent: " + info.response);
         }
@@ -256,16 +257,62 @@ router.post("/:id/edit", (req, res) => {
     });
 });
 
+// User Feedback
+router.get("/:id/feedback", (req, res) => {
+  userId = req.params.id;
+  let lead;
+  let name;
+  let email;
+  let imagePath;
+  userRef
+    .child(userId)
+    .once("value", (userSnap) => {
+      lead = userSnap.val().lead;
+      name = userSnap.val().name;
+      email = userSnap.val().email;
+      imagePath = userSnap.val().imagePath;
+    })
+    .then((u) => {
+      res.render(`user/feedback`, {
+        userId: userId,
+        name: name,
+        email: email,
+        imagePath: imagePath,
+        lead: lead,
+        postCheck: postCheck,
+      });
+    });
+});
+
+router.post("/:id/feedback", (req, res) => {
+  userId = req.params.id;
+  name = req.body.name;
+  email = req.body.email;
+  message = req.body.message;
+  const feedbackSchema = [];
+  feedbackSchema.push({ name: name });
+  feedbackSchema.push({ email: email });
+  feedbackSchema.push({ message: message });
+  console.log(feedbackSchema);
+  database.ref(`Feedback/${userId}/`).push({
+    name: name,
+    email: email,
+    message: message,
+  });
+  postCheck = true;
+  res.redirect(`/user/${userId}/feedback`);
+});
+
 router.get("/:id/logout", (req, res, next) => {
   currentUser = firebase.auth().currentUser;
-  console.log(currentUser);
+  console.log(currentUser.uid);
   if (currentUser != null) {
     firebase
       .auth()
       .signOut()
       .then((u) => {
         var cookies = req.cookies;
-        console.log(cookies + ": is logout");
+        console.log(cookies.key + ": is logout");
         res.clearCookie(currentUser.uid);
         console.log("User logout");
         res.redirect("/");
@@ -274,8 +321,8 @@ router.get("/:id/logout", (req, res, next) => {
         // Handle Errors here
         var errorCode = error.code;
         var errorMessage = error.message;
-        console.log(errorCode);
-        console.log(errorMessage);
+        console.log("error: " + errorCode);
+        console.log("errorMessage: " + errorMessage);
         res.redirect("/");
       });
   } else {
@@ -284,14 +331,14 @@ router.get("/:id/logout", (req, res, next) => {
   }
 });
 
-function check() {
-  firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-      console.log(user.uid);
-    } else {
-      res.redirect("/");
-    }
-  });
-}
+// function check() {
+//   firebase.auth().onAuthStateChanged((user) => {
+//     if (user) {
+//       console.log(user.uid);
+//     } else {
+//       res.redirect("/");
+//     }
+//   });
+// }
 
 module.exports = router;

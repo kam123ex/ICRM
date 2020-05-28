@@ -49,7 +49,7 @@
       </div>
       <i class="fa fa-bars menu-toggle"></i>
       <ul class="nav">
-        <li><a href="/user/<%=userSnap.val().uid%>/home">Home</a></li>
+        <li><a href="/user/<%=userId%>/home">Home</a></li>
         <li>
           <a href="#">
             <i class="fa fa-user"></i>
@@ -57,12 +57,12 @@
             <i class="fa fa-chevron-down" style="font-size: 0.8em;"></i>
           </a>
           <ul>
-            <li><a href="/user/<%=userSnap.val().uid%>/profile">Profile</a></li>
-            <% if(userSnap.val().lead == "Yes" ){%>
-            <li><a href="/user/<%=userSnap.val().uid%>/preference">preference</a></li>
+            <li><a href="/user/<%=userId%>/profile">Profile</a></li>
+            <% if(lead == "Yes" ){%>
+            <li><a href="/user/<%=userId%>/preference">preference</a></li>
             <%}%>
             <li>
-              <a href="/user/<%=userSnap.val().uid%>/logout" class="logout"
+              <a href="/user/<%=userId%>/logout" class="logout"
                 >logout</a
               >
             </li>
@@ -77,19 +77,18 @@
         <ul>
           <li>
             <img
-              src="<%= userSnap.val().imagePath%>"
+              src="<%= imagePath%>"
               alt=""
               class="img icon rounded-circle mb-5"
             />
-            <!-- style="background-image: url(../design_files/images/ICON.png);" -->
             <div>
-              <label for=""><%= userSnap.val().name%></br>
-              <%= userSnap.val().email%>
+              <label for=""><%= name%></br>
+              <%= email%>
               </label>
             </div>
           </li>
           <li>
-            <a href="/user/<%=userSnap.val().uid%>/dashboard">Dashboard</a>
+            <a href="/user/<%=userId%>/dashboard">Dashboard</a>
           </li>
 
           <li>
@@ -99,93 +98,60 @@
 
             <ul class="collapse list-unstyled" id="pageSubmenu">
               <li>
-                <a href="/user/<%=userSnap.val().uid%>/analysis"
+                <a href="/user/<%=userId%>/analysis"
                   >Self Analysis</a
                 >
               </li>
               <li>
-                <a href="/user/<%=userSnap.val().uid%>/chatbot">
+                <a href="/user/<%=userId%>/chatbot">
                   Chat Bot
-                  <!-- <span class="badge badge-pill badge-danger">2</span> -->
                 </a>
               </li>
-              <!-- <li>
-                <a href="/user/<%=userSnap.val().uid%>/feedback">Feedback</a>
-              </li> -->
             </ul>
           </li>
         </ul>
       </div>
+
       <!-- USER CONTENT -->
       <div class="admin-content">
-        <%if(postCheck){%>
+                <%if(postCheck){%>
           <div class="alert alert-success" role="alert">
-            Success! We have a email send to you.
+            Success! Thank you for your comments.
           </div>
         <%}%>
-       
-        <h2 class="page-title">Order List</h2>
-        <form action="/user/<%=userId%>/preference" method="POST">
+        <h2 class="page-title">Feedback</h2>
+          <form action="/user/<%=userId%>/feedback" method="POST">
           <div class="form=group">
-            <h3>What Is Your Flavor</h3>
-            <table>
-              <thead>               
-                <tr>
-                  <h4>Fruit: </h4>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                <td>
-                  <label>Blueberry</label>
-                  <input type="checkbox" class="radio" value="Blueberry" name="flavor" checked/>
-                </td>
-                <td>
-                  <label>Lemon</label>        
-                  <input type="checkbox" class="radio" value="Lemon" name="flavor" />
-                </td>
-                <td>
-                  <label>PassionFruit</label>        
-                  <input type="checkbox" class="radio" value="PassionFruit" name="flavor" />
-                </td>
-                <td>
-                  <label>Strawberry</label>
-                  <input type="checkbox" class="radio" value="Strawberry" name="flavor" />
-                </td>
-              </tr>
-              </tbody>                          
-            </table>
-            <table>
-               <thead>               
-                <tr>
-                  <h4>Taste: </h4>
-                </tr>
-              </thead>
-              <tbody>
-                <td>
-                  <label>Vina</label>        
-                  <input type="checkbox" class="radio" value="Vina" name="flavor" />
-                </td>
-                <td>
-                  <label>Cheese</label>
-                  <input type="checkbox" class="radio" value="Cheese" name="flavor" />
-                </td>
-                  <td>
-                  <label>Chocolate</label>        
-                  <input type="checkbox" class="radio" value="Chocolate" name="flavor" />
-                </td>
-                  <td>
-                  <label>Matcha</label>        
-                  <input type="checkbox" class="radio" value="Matcha" name="flavor" />
-                </td>
-              </tbody>          
-            </table>
-            <div class="form=group">
-              <a href="/user/<%=userId%>/profile" class="btn btn-Danger">
-                Cancel
-              </a>
-              <button type="submit" class="btn btn-primary">Save</button>
-            </div>
+            <label for="">Name</label>
+            <input
+              type="text"
+              name="name"
+              id="title"
+              class="form-control"
+              value="<%= name %>"
+              required
+            />
+          </div>
+          <div class="form=group">
+            <label for="">Email Address</label>
+            <input
+              type="email"
+              name="email"
+              id="title"
+              class="form-control"
+              value="<%= email %>"
+              required
+            />
+          </div>
+          <div class="form=group">
+            <label for="">Message</label>
+            <textarea name="message" id="" cols="30" rows="10"></textarea>
+          </div>
+          <div class="form=group">
+            <a href="/user/<%=userId%>/home" class="btn btn-Danger"
+              >Cancel</a
+            >
+            <button type="submit" class="btn btn-primary">Save</button>
           </div>
         </form>
       </div>
