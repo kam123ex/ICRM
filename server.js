@@ -98,6 +98,16 @@ app.listen(port, (err) => {
   }
 });
 
+// <!-- The core Firebase JS SDK is always required and must be listed first -->
+// <script src="/__/firebase/7.14.3/firebase-app.js"></script>
+
+// <!-- Add SDKs for Firebase products that you want to use
+//      https://firebase.google.com/docs/web/setup#available-libraries -->
+// <script src="/__/firebase/7.14.3/firebase-analytics.js"></script>
+
+// <!-- Initialize Firebase -->
+// <script src="/__/firebase/init.js"></script>
+
 // dialogflow messenger bot
 // EAACh7rTzZBPQBAIgx0yn6LcegKnho3CkNe9CflLCzQb4d75mIQwPdd0eJgGFpIUZBDG544NpxaYZAcjgx0AF5aKyWIeZAZCKZCcxr3k557hdCL11xN8RyPLZAnk0o5HMYFNGQouodz4mFyE7CW8t8LLkNn4Qxty8EQ7BpQrvLgyH2osCd8pOdRo
 
